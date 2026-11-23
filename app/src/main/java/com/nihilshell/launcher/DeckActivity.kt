@@ -496,7 +496,7 @@ class DeckActivity : Activity() {
     /** Once, when the computer is on Bluetooth: Android's question for nearby devices. */
     private fun askForBluetooth() {
         val computer = store.computer ?: return
-        if (!onScreen || computer.psm == null || store.askedBluetooth || BleLink.allowed(this)) return
+        if (!BleLink.available || !onScreen || computer.psm == null || store.askedBluetooth || BleLink.allowed(this)) return
         store.askedBluetooth = true
         requestPermissions(BleLink.PERMISSIONS, REQUEST_BLUETOOTH)
     }

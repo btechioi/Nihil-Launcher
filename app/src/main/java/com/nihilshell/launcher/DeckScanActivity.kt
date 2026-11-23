@@ -272,7 +272,7 @@ class DeckScanActivity : Activity() {
         stop()
         // The computer is on Bluetooth too: Android asks once for nearby devices, then the pairing goes on.
         val store = DeckStore.get(this)
-        if (invitation.psm != null && !store.askedBluetooth && !BleLink.allowed(this)) {
+        if (BleLink.available && invitation.psm != null && !store.askedBluetooth && !BleLink.allowed(this)) {
             store.askedBluetooth = true
             waiting = invitation
             requestPermissions(BleLink.PERMISSIONS, BLUETOOTH_REQUEST)
