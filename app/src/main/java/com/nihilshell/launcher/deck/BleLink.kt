@@ -192,6 +192,7 @@ object BleLink {
     /** An LE channel to the device; insecure, as Android calls one with no bonding: TLS is the check. */
     @SuppressLint("MissingPermission")
     private fun channel(device: BluetoothDevice, psm: Int): BluetoothSocket? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return null
         val socket = try {
             device.createInsecureL2capChannel(psm)
         } catch (e: Exception) {
